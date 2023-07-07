@@ -1,7 +1,6 @@
 
 import { io } from "socket.io-client";
-const socket = io('wss://localhost:3001');
-//const socket = io('ws://monetaxexchange.com:8000');
+const socket = io('wss://api.monetaxexchange.com:8000');
 const channelToSubscription = new Map();
 
 socket.on('connect', () => {

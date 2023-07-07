@@ -1,4 +1,4 @@
-import { makeApiRequest, generateSymbol, parseFullSymbol, makeCsvApiRequest } from './helpers.js';
+import { makeApiRequest, generateSymbol, parseFullSymbol, makeApiMonetaRequest } from './helpers.js';
 import { subscribeOnStream, unsubscribeFromStream } from './webStreaming.js';
 
 // DatafeedConfiguration implementation
@@ -118,6 +118,7 @@ export default {
             e: parsedSymbol.exchange,
             fsym: parsedSymbol.fromSymbol,
             tsym: parsedSymbol.toSymbol,
+			fromTs: from,
             toTs: to,
             limit: 2000,
         };
@@ -125,8 +126,7 @@ export default {
             .map(name => `${name}=${encodeURIComponent(urlParameters[name])}`)
                 .join('&');
         try {
-            const data = await makeCsvApiRequest();//await makeApiRequest(`data/histoday?${query}`); //
-            console.log(data);
+            const data = await makeApiMonetaRequest (`search?${query}`);
             if (data.Response && data.Response === 'Error' || data.Data.length === 0) {
                 // "noData" should be set if there is no data in the requested period
                 onHistoryCallback([], { noData: true });
