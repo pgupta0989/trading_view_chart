@@ -1,6 +1,6 @@
 
 import { io } from "socket.io-client";
-const socket = io('wss://api.monetaxexchange.com:8000');
+const socket = io('wss://tv-websocket.vercel.app/');
 const channelToSubscription = new Map();
 
 socket.on('connect', () => {
