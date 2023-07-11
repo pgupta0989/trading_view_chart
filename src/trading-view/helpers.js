@@ -10,7 +10,7 @@ export async function makeApiRequest(path) {
 
 export async function makeApiMonetaRequest(path) {
     try {
-        const response = await fetch(`https://tv-websocket.vercel.app/${path}`);
+        const response = await fetch(`https://api.monetaxexchange.com:8000/${path}`);
         return response.json();
     } catch(error) {
         console.log(error);
